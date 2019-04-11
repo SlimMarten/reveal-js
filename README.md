@@ -3,15 +3,6 @@
     <!-- <a href="https://www.nervo-js.org" rel="nofollow"><img src="https://raw.githubusercontent.com/SlimMarten/nervo/development/logo.svg?sanitize=true" align="center" width="300"></a> -->
 </p>
 
-## Installation
+## About
 
-```
-npm i reveal-js
-```
-
-## Usage
-
-
-```js
-import * as Reveal from 'reveal-js';
-```
+Work in Progress Javascript Toolkit to DOM Nodes entering the visibible part of a document.
