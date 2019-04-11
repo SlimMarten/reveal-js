@@ -19,4 +19,3 @@ const target = document.getElementById("root");
 if (target) render(<App />, target);
 
 const agent = new Reveal.Agent(".js-section");
-console.log(agent);
