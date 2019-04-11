@@ -8,13 +8,13 @@
 		"url": "git+https://github.com/SlimMarten/reveal.git"
 	},
 	"scripts": {
-		"build:prod": "NODE_ENV=production webpack --config config/webpack.config.js --mode production --build",
-		"build:dev": "NODE_ENV=development webpack --config config/webpack.config.js --mode development --build",
+		"build:prod": "NODE_ENV=production webpack --config config/webpack.config.lib.js --mode production --build",
+		"build:dev": "NODE_ENV=development webpack --config config/webpack.config.lib.js --mode development --build",
 		"build:app": "NODE_ENV=production webpack --config config/webpack.config.app.js --mode production",
 		"build:lib": "npm-run-all build:prod build:dev",
 		"build": "npm-run-all build:lib build:app",
 		"app": "NODE_ENV=development webpack-dev-server --config config/webpack.config.app.js --mode development --open",
-		"start": "NODE_ENV=development webpack-dev-server --config config/webpack.config.js --hot --mode development --open"
+		"start": "npm-run-all start"
 	},
 	"keywords": ["javascript", "framework", "css", "js", "library", "toolkit"],
 	"author": "Marten Zander",

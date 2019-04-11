@@ -1,11 +1,8 @@
 const path = require("path");
 const packageConfig = require("./../package.json");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 
 const { resolve } = require("./webpack.settings");
-const { plugins } = require("./webpack.settings");
-plugins.htmlWebpackPlugin.template = "app/src/html/development.html";
 
 const fileName =
 	process.env.NODE_ENV === "development"
@@ -48,17 +45,4 @@ module.exports = {
 		],
 	},
 	plugins: [new webpack.HotModuleReplacementPlugin()],
-	devServer: {
-		disableHostCheck: true,
-		port: 3000,
-		contentBase: [
-			path.join(__dirname, "..", "build"),
-			path.join(__dirname, "..", "app", "dist"),
-		],
-		watchContentBase: true,
-		publicPath: "http://localhost:8080/",
-	},
 };
-
-if (process.argv.indexOf("--build") >= 0) return;
-module.exports.plugins.push(new HtmlWebpackPlugin(plugins.htmlWebpackPlugin));
