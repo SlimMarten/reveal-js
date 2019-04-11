@@ -1,0 +1,116 @@
+const browsers = [
+	"Explorer >= 9",
+	"Edge >= 13",
+	"Firefox ESR",
+	"safari >= 10",
+	"Chrome >= 55",
+	"ChromeAndroid >= 47",
+	"last 2 iOS versions",
+];
+
+module.exports = ctx => ({
+	parser: "postcss-scss",
+	map: ctx.options.map,
+	plugins: {
+		stylelint: {
+			configFile: ".stylelintrc",
+			files: "app/src/**/*.(css|scss|pcss)",
+			syntax: "scss",
+		},
+		"postcss-import": { plugins: [require("stylelint")()] },
+		"postcss-at-rules-variables": {},
+		"postcss-nested-ancestors": {},
+		// "postcss-custom-properties": {},
+		// "postcss-custom-selectors": {},
+		"postcss-selector-not": {},
+		"postcss-for": {},
+		"postcss-each": {},
+		"postcss-sassy-mixins": {},
+		"postcss-conditionals": {},
+		"postcss-modules-values": {},
+		"postcss-advanced-variables": {
+			variables: {
+				"breakpoint-sm": "576px",
+				"breakpoint-md": "768px",
+				"breakpoint-lg": "992px",
+				"breakpoint-xl": "1200px",
+				"corporate-color-1": "#f4f4f4",
+				"corporate-color-2": "#FFEB4F",
+				"corporate-color-3": "#202449",
+				"corporate-color-4": "#196A99",
+				"corporate-color-5": "#DD436B",
+				fontSize: "18px",
+				textShadow: "none",
+				fontFamily: "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
+				lineHeight: "1.5",
+				tabSize: "4",
+				paddingTop: "1em",
+				baseColor: "#5C6E74",
+
+				commentColor: "#93A1A1; ",
+				punctuationColor: "#999; ",
+				propertyColor: "#905",
+				selectorColor: "#690",
+				operatorColor: "#a67f59",
+				operatorBg: "hsla(0, 0%, 100%, .5)",
+				variableColor: "#e90",
+				functionColor: "#DD4A68",
+				keywordColor: "#07a",
+				selectedColor: "#b3d4fc",
+
+				inlineCodeColor: "#DB4C69",
+				inlineCodeBackground: "#F9F2F4",
+
+				highlightBackground: "#F7EBC6",
+				highlightAccent: "#F7D87C",
+			},
+		},
+		// "postcss-quantity-queries": {},
+		"postcss-hexrgba": {},
+		// "postcss-object-fit-images": {},
+		"postcss-pxtorem": {
+			rootValue: 16,
+			selectorBlackList: ["body"],
+		},
+		"postcss-assets": {
+			// relative: 'css/',
+			loadPaths: ["img/", "img/**/*", "fonts/", "fonts/**/*"],
+			basePath: "app/dist/",
+			cachebuster: false,
+		},
+		"postcss-flexbugs-fixes": {},
+		"postcss-size": {},
+		"postcss-inline-svg": {
+			path: "app/src/svg",
+		},
+		"postcss-will-change": {},
+		"postcss-nested": {},
+		// "postcss-random": {},
+		"postcss-calc": {
+			precision: 10,
+			warnWhenCannotResolve: false,
+			mediaQueries: true,
+		},
+		"postcss-initial": {},
+		// "postcss-input-style": {},
+		"postcss-easings": {},
+		"postcss-mesh": {},
+		autoprefixer: {
+			browsers,
+		},
+		// "postcss-svgo": svgoSettings,
+		cssnano:
+			ctx.env === "production"
+				? {
+						filterPlugins: false,
+						safe: true,
+						mergeRules: false,
+						browsers,
+						svgo: false,
+						discardComments: {
+							removeAll: true,
+						},
+				  }
+				: false,
+	},
+});
