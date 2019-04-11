@@ -6,6 +6,8 @@ class Agent extends Base {
 		super(options);
 		this.isAgent = true;
 		this.targets = [];
+		this.triggerPoint =
+			this.options.triggerPoint !== undefined ? this.options.triggerPoint : 0.0;
 		document.querySelectorAll(selector).forEach(node => {
 			this.targets.push(new Target(node));
 		});
@@ -31,8 +33,10 @@ class Agent extends Base {
 			const node = target.node;
 			const boundingBox = node.getBoundingClientRect();
 			const top = boundingBox.top;
-			const bottom = boundingBox.height + top;
-			if (top < window.innerHeight && bottom > 0) {
+			const height = boundingBox.height;
+			const bottom = height + top;
+
+			if (top + height * this.triggerPoint < window.innerHeight && bottom > 0) {
 				if (target.isSpotted) return;
 				if (this.options.spottedClass) node.classList.add(this.options.spottedClass);
 				this.dispatchEvent({ type: "targetEnter", item: target });
