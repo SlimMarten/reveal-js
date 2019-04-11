@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === "development") {
 		containerClass: "nervo-container",
 		voidClass: "nervo-void",
 		columnClass: "nervo-col",
+		isHidden: true,
 	});
 }
 

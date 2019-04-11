@@ -37,8 +37,12 @@ body {
   overflow-x: hidden;
 }
 
-::selection {
-  background: $corporate-color-2;
+*::selection {
+  background: $corporate-color-2 !important;
+  color:inherit;
+}
+
+p::selection{
   color: rgba($corporate-color-3, 1);
 }
 
